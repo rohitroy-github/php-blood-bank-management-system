@@ -32,7 +32,7 @@
                 } ?>
                 <div class="form-group">
                     <label for="username">Full Name</label>
-                    <input name="full_name" type="text" class="form-control" id="full_name"
+                    <input name="name" type="text" class="form-control" id="name"
                         placeholder="Enter your full name ?" />
                 </div>
                 <div class="form-group">
@@ -70,7 +70,7 @@
 
 <!-- <?php if (isset($_POST['submit'])) {
     // Store in variables
-    $full_name = $_POST['full_name'];
+    $name = $_POST['name'];
     $username = $_POST['username'];
     $contact = $_POST['contact'];
     $bloodGroup = $_POST['bloodGroup'];
@@ -78,7 +78,7 @@
     $password = md5($_POST['password']);
     // Set SQL query
     $sql = "INSERT INTO tbl_admin SET
-  full_name = '$full_name',
+  name = '$name',
   username = '$username',
   password = '$password'
   ";

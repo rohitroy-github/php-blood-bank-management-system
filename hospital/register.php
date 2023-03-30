@@ -30,12 +30,12 @@
                     unset($_SESSION['add']);
                 } ?>
                 <div class="form-group">
-                    <label for="username">Hospital Name</label>
-                    <input name="full_name" type="text" class="form-control" id="full_name"
+                    <label for="name">Hospital Name</label>
+                    <input name="name" type="text" class="form-control" id="name"
                         placeholder="Enter hospital's name ?" />
                 </div>
                 <div class="form-group">
-                    <label for="password">Contact Number</label>
+                    <label for="contact">Contact Number</label>
                     <input name="contact" type="text" class="form-control" id="contact"
                         placeholder="Enter hospital's contact number ?" />
                 </div>
@@ -65,14 +65,14 @@
 
 <!-- <?php if (isset($_POST['submit'])) {
     // Store in variables
-    $full_name = $_POST['full_name'];
+    $name = $_POST['name'];
     $username = $_POST['username'];
     $contact = $_POST['contact'];
     // Password encryption using md5
     $password = md5($_POST['password']);
     // Set SQL query
     $sql = "INSERT INTO tbl_admin SET
-  full_name = '$full_name',
+  name = '$name',
   username = '$username',
   contact = '$contact',
   password = '$password'

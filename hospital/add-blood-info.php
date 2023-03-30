@@ -30,18 +30,18 @@
                     unset($_SESSION['add']);
                 } ?>
                 <div class="form-group">
-                    <label for="username">Blood Group</label>
-                    <input name="bloodGroup" type="text" class="form-control" id="full_name"
+                    <label for="bloodGroup">Blood Group</label>
+                    <input name="bloodGroup" type="text" class="form-control" id="bloodGroup"
                         placeholder="Enter blood group ?" />
                 </div>
                 <div class="form-group">
-                    <label for="password">Volume</label>
+                    <label for="volume">Volume</label>
                     <input name="volume" type="number" class="form-control" id="volume"
                         placeholder="Enter volume available (in Lts) ?" />
                 </div>
                 <div class="form-group">
-                    <label for="username">Blood Sample Expiry Date</label>
-                    <input type="date" id="expiryDate" name="expiryDate" class="form-control" placeholder="Enter expiry date : MM/DD/YYYY ?">
+                    <label for="expiryDate">Blood Sample Expiry Date</label>
+                    <input type="date" id="expiryDate" name="expiryDate" class="form-control" placeholder="Enter expiry date : DD/MM/YYYY ?">
                 </div>
                 <button name="submit" type="submit" class="btn btn-primaryColor" value="login">
                     Add Blood
