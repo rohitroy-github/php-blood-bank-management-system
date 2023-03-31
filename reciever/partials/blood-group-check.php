@@ -21,13 +21,17 @@
   $recieverBloodGroup = $rows['bloodGroup'];
 
   // fetchLoggedInRequested'sBloodGroup
-  $bloodSampleId = $_GET['id'];
-  $sql2 = "SELECT * FROM tbl_bloodbank WHERE id='$bloodSampleId'";
+  $bloodBankId = $_GET['id'];
+  $sql2 = "SELECT * FROM tbl_bloodbank WHERE id='$bloodBankId'";
   $res2 = mysqli_query($conn, $sql2);
   $rows2 = mysqli_fetch_assoc($res2);
   $requestedBloodGroup = $rows2['bloodGroup'];
+  $hospitalId = $rows2['hospital_id'];
 
   if ($recieverBloodGroup == $requestedBloodGroup) {
+      $_SESSION['bloodBankId'] = $bloodBankId;
+      $_SESSION['hospitalId'] = $hospitalId;
+
       header('location:' . HOMEURL . 'reciever/request-blood.php');
   } else {
       $_SESSION['blood-group-mismatch'] =

@@ -54,6 +54,7 @@ include '../config/constants.php'; ?>
         </form>
         <br />
         <!-- loginMessages -->
+        <div>
         <?php
         if (isset($_SESSION['login-failure'])) {
             echo $_SESSION['login-failure'];
@@ -65,6 +66,7 @@ include '../config/constants.php'; ?>
             unset($_SESSION['not-logged-in']);
         }
         ?>
+        </div>
       </div>
     </div>
 
