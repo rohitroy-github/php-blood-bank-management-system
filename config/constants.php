@@ -1,11 +1,5 @@
 <!-- Main SQL Database connection file -->
 <?php
-// Starting session
-
-session_start();
-
-// Defining constant values using define()
-
 define('LOCALHOST', 'localhost');
 define('USERNAME', 'root');
 define('PASSWORD', '');
@@ -16,8 +10,7 @@ define(
     'http://localhost/rohit-projects/php-projects/php-blood-bank/'
 );
 
-// if query executed successfully > res = true else res = false
-// die > stop further processing
+session_start();
 
 ($conn = mysqli_connect(LOCALHOST, USERNAME, PASSWORD)) or die(mysqli_error());
 
