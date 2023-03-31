@@ -1,4 +1,11 @@
-<!-- Main CMS/ Admin file  -->
+<?php
+include '../config/constants.php';
+include './partials/login-check.php';
+
+// fetchingHospitalId?
+$hospitalId = $_SESSION['hospitalId'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,16 +31,8 @@
     <div class="main-container container" id="dashboard">
         <div class="content">
             <h2 style="font-weight: 500; text-align: center;">
-                <b>View Requests</b>
+                <b>Blood Sample Requests</b>
             </h2>
-
-            <div>
-              <?php if (isset($_SESSION['update-order'])) {
-                  echo $_SESSION['update-order'];
-                  // Ending session
-                  unset($_SESSION['update-order']);
-              } ?>
-            </div>
 
             <div class="table-responsive">
                 <table class="table">
@@ -43,43 +42,91 @@
                                 <h6><b>Serial</b></h6>
                             </th>
                             <th>
+                                <h6><b>Name</b></h6>
+                            </th>
+                            <th>
+                                <h6><b>Contact</b></h6>
+                            </th>
+                            <th>
+                                <h6><b>Address</b></h6>
+                            </th>
+                            <th>
                                 <h6><b>Blood Group</b></h6>
                             </th>
                             <th>
-                                <h6><b>Requester Name</b></h6>
+                                <h6><b>Volume</b></h6>
                             </th>
                             <th>
-                                <h6><b>Date</b></h6>
+                                <h6><b>Expiry Date</b></h6>
                             </th>
                             <th>
-                                <h6><b>Status</b></h6>
+                                <h6><b>Requested On</b></h6>
                             </th>
-                            <th>
-                                <h6><b>Actions</b></h6>
-                            </th>
+                            <!-- <th>
+                                <h6><b>Action</b></h6>
+                            </th> -->
                         </tr>
                     </thead>
                     <tbody>
+
+                        <!-- fetchHospitalNameWhoLoggedIn? -->
+                        <!-- <?php
+                        $sql_tbl_request = "SELECT * FROM tbl_hospital WHERE id=$hospitalId";
+
+                        $res_tbl_request = mysqli_query(
+                            $conn,
+                            $sql_tbl_request
+                        );
+
+                        if ($res_tbl_request == true) {
+                            $rows_tbl_request = mysqli_fetch_assoc(
+                                $res_tbl_request
+                            );
+
+                            $hospitalName = $rows_tbl_hospital['name'];
+                        }
+                        ?> -->
+
                         <?php
-                        $sql = 'SELECT * FROM tbl_order ORDER BY id DESC';
+                        $sql_tbl_request = "SELECT * FROM tbl_request WHERE hospitalId=$hospitalId ORDER BY id DESC ";
 
-                        $res = mysqli_query($conn, $sql);
+                        $res_tbl_request = mysqli_query(
+                            $conn,
+                            $sql_tbl_request
+                        );
 
-                        if ($res == true) {
+                        if ($res_tbl_request == true) {
                             // Count rows for checking data availibility
-                            $count = mysqli_num_rows($res);
+                            $count = mysqli_num_rows($res_tbl_request);
 
                             $sn = 1;
 
                             if ($count > 0) {
-                                while ($rows = mysqli_fetch_assoc($res)) {
+                                while (
+                                    $rows = mysqli_fetch_assoc($res_tbl_request)
+                                ) {
 
                                     //Run as long as data is available
                                     $id = $rows['id'];
-                                    $bloodGroup = $rows['bloodGroup'];
-                                    $requesterName = $rows['requesterName'];
-                                    $requestDate = $rows['requestDate'];
-                                    $status = $rows['status'];
+                                    $requesterName = $rows['requester_name'];
+                                    $requesterContact =
+                                        $rows['requester_contact'];
+                                    $requesterAddress =
+                                        $rows['requester_address'];
+                                    $requesterId = $rows['requesterId'];
+
+                                    $bloodBankId = $rows['bloodBankId'];
+                                    // fetchBLOODGROUPandEXPIRYDATE?
+                                    $sql2 = "SELECT * FROM tbl_bloodbank WHERE id='$bloodBankId'";
+                                    $res2 = mysqli_query($conn, $sql2);
+                                    $rows2 = mysqli_fetch_assoc($res2);
+                                    $requestedBloodGroup = $rows2['bloodGroup'];
+                                    $requestedBloodVolume = $rows2['volume'];
+                                    $requestedBloodExpiryDate =
+                                        $rows2['expiryDate'];
+
+                                    $hospitalId = $rows['hospitalId'];
+                                    $requestedDate = $rows['requestedDate'];
                                     ?>
                         <tr>
                             <td>
@@ -89,45 +136,56 @@
                             </td>
                             <td>
                                 <p>
-                                    <?php echo $bloodGroup; ?>
-                                </p>
-                            </td>
-                            <td>
-                                <p>
                                     <?php echo $requesterName; ?>
                                 </p>
                             </td>
                             <td>
                                 <p>
-                                    <?php echo $requestDate; ?>
+                                    <?php echo $requesterContact; ?>
                                 </p>
                             </td>
                             <td>
                                 <p>
-                                    <?php echo $status; ?>
+                                    <?php echo $requesterAddress; ?>
                                 </p>
                             </td>
                             <td>
+                                <p>
+                                    <?php echo $requestedBloodGroup; ?>
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    <?php echo $requestedBloodVolume; ?>
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    <?php echo $requestedBloodExpiryDate; ?>
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    <?php echo $requestedDate; ?>
+                                </p>
+                            </td>
+                            <!-- <td>
                                 <div class="d-flex justify-content-center">
-                                    <a href="<?php echo HOMEURL; ?>admin/update-order.php?id=<?php echo $id; ?>"
+                                    <a href="<?php echo HOMEURL; ?>hospital/update-blood.php?id=<?php echo $id; ?>"
                                         class="btn adminPanelBtn mr-2">
-                                        Update Request
+                                        Update Blood
                                     </a>
                                 </div>
-                            </td>
+                            </td> -->
                         </tr>
 
                         <?php
                                 }
                             } else {
                                  ?>
-                        <tr>
-                            <td>
                                 <p>
-                                    Currently there are no requests !
+                                    Currently there are no blood sample requested !
                                 </p>
-                            </td>
-                        </tr>
                         <?php
                             }
                         }
