@@ -96,11 +96,6 @@ include '../config/constants.php'; ?>
         $_SESSION['registration-success'] =
             '<p class="text-center">Reciever registered successfully !</p>';
 
-        // sessions
-        $_SESSION['user'] = $username;
-        $_SESSION['user_type'] = 'reciever';
-        $_SESSION['recieverId'] = $id;
-
         // redirectingToLogin
         header('location:' . HOMEURL . 'reciever/');
     } else {

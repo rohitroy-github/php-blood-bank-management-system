@@ -21,13 +21,6 @@ include '../config/constants.php'; ?>
             <form class="login-form" action="" method="POST">
                 <h2 class="text-center">Hospital Registration</h2>
                 <br />
-
-                <?php if (isset($_SESSION['registration-failure'])) {
-                    echo $_SESSION['registration-failure'];
-                    // Ending session
-                    unset($_SESSION['registration-failure']);
-                } ?>
-
                 <div class="form-group">
                     <label for="name">Hospital Name</label>
                     <input name="name" type="text" class="form-control" id="name"
@@ -52,6 +45,13 @@ include '../config/constants.php'; ?>
                     Register
                 </button>
             </form>
+            <div>
+                <?php if (isset($_SESSION['registration-failure'])) {
+                    echo $_SESSION['registration-failure'];
+                    // Ending session
+                    unset($_SESSION['registration-failure']);
+                } ?>
+            </div>
         </div>
     </div>
 
@@ -82,13 +82,13 @@ include '../config/constants.php'; ?>
     if ($res == true) {
         // Data inserted
         $_SESSION['registration-success'] =
-            '<p>Hospital registered successfully !</p>';
+            '<p class="text-center">Hospital registered successfully !</p>';
 
         header('location:' . HOMEURL . 'hospital/');
     } else {
         // Failed
         $_SESSION['registration-failure'] =
-            '<p>Hospital registration failed !</p>';
+            '<p class="text-center">Failed to register hospital. Please try again later !</p>';
 
         // Redirect to addAdmin Page again
         header('location:' . HOMEURL . 'hospital/register.php');

@@ -1,5 +1,6 @@
 <?php if (!isset($_SESSION['user'])) {
-    $_SESSION['not-logged-in'] = '<p>Please login to access admin panels !</p>';
+    $_SESSION['not-logged-in'] =
+        '<p class="text-center">Please login to access admin panels !</p>';
 
     header('location:' . HOMEURL . 'hospital/login.php');
 }

@@ -50,6 +50,11 @@ include './partials/login-check.php';
                     echo $_SESSION['addition-success'];
                     unset($_SESSION['addition-success']);
                 } ?>
+
+                <?php if (isset($_SESSION['registration-success'])) {
+                    echo $_SESSION['registration-success'];
+                    unset($_SESSION['registration-success']);
+                } ?>
             </div>
 
             <div class="table-responsive">
@@ -157,7 +162,7 @@ include './partials/login-check.php';
                             } else {
                                  ?>
                         <p>
-                            Currently there are no blood samples !
+                            Currently there are no blood samples in your blood bank !
                         </p>
                         <?php
                             }
