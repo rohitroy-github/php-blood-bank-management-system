@@ -75,10 +75,27 @@ include '../config/constants.php'; ?>
 
                                     //Run as long as data is available
                                     $id = $rows['id'];
-                                    $hospitalName = $rows['name'];
+                                    $hospitalId = $rows['hospital_id'];
                                     $bloodGroup = $rows['bloodGroup'];
                                     $volume = $rows['volume'];
                                     $expiryDate = $rows['expiryDate'];
+
+                                    // fetchHospitalNameWhoLoggedIn?
+                                    $sql_tbl_hospital = "SELECT * FROM tbl_hospital WHERE id=$hospitalId";
+
+                                    $res_tbl_hospital = mysqli_query(
+                                        $conn,
+                                        $sql_tbl_hospital
+                                    );
+
+                                    if ($res_tbl_hospital == true) {
+                                        $rows_tbl_hospital = mysqli_fetch_assoc(
+                                            $res_tbl_hospital
+                                        );
+
+                                        $hospitalName =
+                                            $rows_tbl_hospital['name'];
+                                    }
                                     ?>
                         <tr>
                             <td>
@@ -108,7 +125,7 @@ include '../config/constants.php'; ?>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a href="<?php echo HOMEURL; ?>admin/update-order.php?id=<?php echo $id; ?>"
+                                    <a href="<?php echo HOMEURL; ?>reciever/request-blood.php?id=<?php echo $id; ?>"
                                         class="btn adminPanelBtn mr-2">
                                         Request Blood
                                     </a>
@@ -120,14 +137,10 @@ include '../config/constants.php'; ?>
                                 }
                             } else {
                                  ?>
-                        <tr>
-                            <td>
-                                <p>
-                                    Currently there are no orders !
-                                </p>
-                            </td>
-                        </tr>
-                        <?php
+                               <p>
+                                   Currently there are no blood samples !
+                               </p>
+                       <?php
                             }
                         }
                         ?>

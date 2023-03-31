@@ -17,6 +17,15 @@ include '../config/constants.php'; ?>
 </head>
 
 <body>
+
+    <!-- fetchingHospitalIdWhoLoggedIn -->
+    <?php if (isset($_SESSION['hospitalId'])) {
+        $hospitalId = $_SESSION['hospitalId'];
+    } else {
+        header('location: ' . HOMEURL . 'hospital/login.php');
+        exit();
+    } ?>
+
     <!-- Menu Section -->
     <div class="top-container">
         <?php include './partials/navbar.php'; ?>
@@ -30,15 +39,15 @@ include '../config/constants.php'; ?>
             </h2>
 
             <div>
-              <?php if (isset($_SESSION['update-order'])) {
-                  echo $_SESSION['update-order'];
-                  // Ending session
-                  unset($_SESSION['update-order']);
-              } ?>
+                <?php if (isset($_SESSION['update-order'])) {
+                    echo $_SESSION['update-order'];
+                    // Ending session
+                    unset($_SESSION['update-order']);
+                } ?>
             </div>
 
             <div class="table-responsive">
-            <table class="table">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>
@@ -62,8 +71,27 @@ include '../config/constants.php'; ?>
                         </tr>
                     </thead>
                     <tbody>
+
+                        <!-- fetchHospitalNameWhoLoggedIn? -->
                         <?php
-                        $sql = 'SELECT * FROM tbl_bloodbank ORDER BY id DESC';
+                        $sql_tbl_hospital = "SELECT * FROM tbl_hospital WHERE id=$hospitalId";
+
+                        $res_tbl_hospital = mysqli_query(
+                            $conn,
+                            $sql_tbl_hospital
+                        );
+
+                        if ($res_tbl_hospital == true) {
+                            $rows_tbl_hospital = mysqli_fetch_assoc(
+                                $res_tbl_hospital
+                            );
+
+                            $hospitalName = $rows_tbl_hospital['name'];
+                        }
+                        ?>
+
+                        <?php
+                        $sql = "SELECT * FROM tbl_bloodbank WHERE hospital_id=$hospitalId ORDER BY id DESC ";
 
                         $res = mysqli_query($conn, $sql);
 
@@ -78,7 +106,6 @@ include '../config/constants.php'; ?>
 
                                     //Run as long as data is available
                                     $id = $rows['id'];
-                                    $hospitalName = $rows['name'];
                                     $bloodGroup = $rows['bloodGroup'];
                                     $volume = $rows['volume'];
                                     $expiryDate = $rows['expiryDate'];
@@ -101,7 +128,7 @@ include '../config/constants.php'; ?>
                             </td>
                             <td>
                                 <p>
-                                <?php echo $volume; ?>
+                                    <?php echo $volume; ?>
                                 </p>
                             </td>
                             <td>
@@ -123,13 +150,9 @@ include '../config/constants.php'; ?>
                                 }
                             } else {
                                  ?>
-                        <tr>
-                            <td>
                                 <p>
-                                    Currently there are no orders !
+                                    Currently there are no blood samples !
                                 </p>
-                            </td>
-                        </tr>
                         <?php
                             }
                         }
@@ -142,7 +165,7 @@ include '../config/constants.php'; ?>
 
     <!-- footerSection -->
     <div class="bottom-container">
-    <?php include './partials/footer.php'; ?>
+        <?php include './partials/footer.php'; ?>
     </div>
 
     <!-- Bootstrap JS -->

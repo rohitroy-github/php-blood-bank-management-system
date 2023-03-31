@@ -22,10 +22,10 @@ include './config/constants.php'; ?>
         <?php include './partials/navbar.php'; ?>
     </div>
 
-    <!-- <?php if (isset($_SESSION['login'])) {
-        echo $_SESSION['login'];
-        unset($_SESSION['login']);
-    } ?> -->
+    <?php if (isset($_SESSION['logout-success'])) {
+        echo $_SESSION['logout-success'];
+        unset($_SESSION['logout-success']);
+    } ?>
 
     <!-- mainContentSection -->
     <div class="main-container container" id="dashboard">
@@ -75,10 +75,27 @@ include './config/constants.php'; ?>
 
                                     //Run as long as data is available
                                     $id = $rows['id'];
-                                    $hospitalName = $rows['name'];
+                                    $hospitalId = $rows['hospital_id'];
                                     $bloodGroup = $rows['bloodGroup'];
                                     $volume = $rows['volume'];
                                     $expiryDate = $rows['expiryDate'];
+
+                                    // fetchHospitalNameWhoLoggedIn?
+                                    $sql_tbl_hospital = "SELECT * FROM tbl_hospital WHERE id=$hospitalId";
+
+                                    $res_tbl_hospital = mysqli_query(
+                                        $conn,
+                                        $sql_tbl_hospital
+                                    );
+
+                                    if ($res_tbl_hospital == true) {
+                                        $rows_tbl_hospital = mysqli_fetch_assoc(
+                                            $res_tbl_hospital
+                                        );
+
+                                        $hospitalName =
+                                            $rows_tbl_hospital['name'];
+                                    }
                                     ?>
                         <tr>
                             <td>
@@ -120,14 +137,10 @@ include './config/constants.php'; ?>
                                 }
                             } else {
                                  ?>
-                        <tr>
-                            <td>
-                                <p>
-                                    Currently there are no orders !
-                                </p>
-                            </td>
-                        </tr>
-                        <?php
+                               <p>
+                                   Currently there are no blood samples !
+                               </p>
+                       <?php
                             }
                         }
                         ?>

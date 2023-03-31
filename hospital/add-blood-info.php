@@ -8,19 +8,22 @@ include '../config/constants.php'; ?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../styles/admin.css"
-    />   
-    
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../styles/admin.css" />
+
     <title>Hospital | Add Blood</title>
 </head>
 
 <body>
+    <!-- fetchingHospitalIdWhoLoggedIn -->
+    <?php if (isset($_SESSION['hospitalId'])) {
+        $hospitalId = $_SESSION['hospitalId'];
+    } else {
+        header('location: ' . HOMEURL . 'hospital/login.php');
+        exit();
+    } ?>
+
     <div class="container">
         <div class="col-md-6 col-lg-6">
             <form class="login-form" action="" method="POST">
@@ -44,7 +47,8 @@ include '../config/constants.php'; ?>
                 </div>
                 <div class="form-group">
                     <label for="expiryDate">Blood Sample Expiry Date</label>
-                    <input type="date" id="expiryDate" name="expiryDate" class="form-control" placeholder="Enter expiry date : DD/MM/YYYY ?">
+                    <input type="date" id="expiryDate" name="expiryDate" class="form-control"
+                        placeholder="Enter expiry date : DD/MM/YYYY ?">
                 </div>
                 <button name="submit" type="submit" class="btn btn-primaryColor" value="login">
                     Add Blood
@@ -68,6 +72,7 @@ include '../config/constants.php'; ?>
     $expiryDate = $_POST['expiryDate'];
     // Set SQL query
     $sql = "INSERT INTO tbl_bloodbank SET
+    hospital_id = '$hospitalId',
   bloodGroup = '$bloodGroup_upc',
   volume = '$volume',
   expiryDate = '$expiryDate'

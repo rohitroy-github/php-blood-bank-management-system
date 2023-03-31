@@ -95,8 +95,10 @@ include '../config/constants.php';
 
         // Login session check
         $_SESSION['user'] = $username;
+        $_SESSION['hospitalId'] = $id;
 
         header('location:' . HOMEURL . 'hospital/');
+        exit();
     } else {
         $_SESSION['login-failure'] =
             '<p class="text-center">Failed to login | Wrong credentials !</p>';
