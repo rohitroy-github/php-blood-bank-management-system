@@ -1,11 +1,6 @@
-<!-- <?php include '../../config/constants.php'; ?>
+<?php
+include './login-check.php'; ?>
 
-<?php if (isset($_SESSION['hospitalId'])) {
-    $hospitalId = $_SESSION['hospitalId'];
-} else {
-    header('location: ' . HOMEURL . 'hospital/login.php');
-    exit();
-} ?> -->
 
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">

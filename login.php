@@ -19,10 +19,17 @@
         <?php include './partials/navbar.php'; ?>
     </div>
 
-    <!-- <?php if (isset($_SESSION['login'])) {
+    <?php
+    if (isset($_SESSION['login'])) {
         echo $_SESSION['login'];
         unset($_SESSION['login']);
-    } ?> -->
+    }
+
+    if (isset($_SESSION['not-logged-in'])) {
+        echo $_SESSION['not-logged-in'];
+        unset($_SESSION['not-logged-in']);
+    }
+    ?>
 
     <!-- mainContentSection -->
     <div class="main-container container" id="dashboard">

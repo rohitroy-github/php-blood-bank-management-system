@@ -125,7 +125,7 @@ include './config/constants.php'; ?>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a href="<?php echo HOMEURL; ?>admin/update-order.php?id=<?php echo $id; ?>"
+                                    <a href="<?php echo HOMEURL; ?>reciever/request-blood.php?id=<?php echo $id; ?>"
                                         class="btn adminPanelBtn mr-2">
                                         Request Blood
                                     </a>

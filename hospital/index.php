@@ -1,5 +1,7 @@
 <?php
-include '../config/constants.php'; ?>
+include '../config/constants.php';
+include './login-check.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,10 +41,10 @@ include '../config/constants.php'; ?>
             </h2>
 
             <div>
-                <?php if (isset($_SESSION['update-order'])) {
-                    echo $_SESSION['update-order'];
+                <?php if (isset($_SESSION['login-success'])) {
+                    echo $_SESSION['login-success'];
                     // Ending session
-                    unset($_SESSION['update-order']);
+                    unset($_SESSION['login-success']);
                 } ?>
             </div>
 
@@ -53,9 +55,9 @@ include '../config/constants.php'; ?>
                             <th>
                                 <h6><b>Serial</b></h6>
                             </th>
-                            <th>
+                            <!-- <th>
                                 <h6><b>Hospital</b></h6>
-                            </th>
+                            </th> -->
                             <th>
                                 <h6><b>Blood Group</b></h6>
                             </th>
@@ -65,15 +67,15 @@ include '../config/constants.php'; ?>
                             <th>
                                 <h6><b>Expiry</b></h6>
                             </th>
-                            <th>
+                            <!-- <th>
                                 <h6><b>Action</b></h6>
-                            </th>
+                            </th> -->
                         </tr>
                     </thead>
                     <tbody>
 
                         <!-- fetchHospitalNameWhoLoggedIn? -->
-                        <?php
+                        <!-- <?php
                         $sql_tbl_hospital = "SELECT * FROM tbl_hospital WHERE id=$hospitalId";
 
                         $res_tbl_hospital = mysqli_query(
@@ -88,7 +90,7 @@ include '../config/constants.php'; ?>
 
                             $hospitalName = $rows_tbl_hospital['name'];
                         }
-                        ?>
+                        ?> -->
 
                         <?php
                         $sql = "SELECT * FROM tbl_bloodbank WHERE hospital_id=$hospitalId ORDER BY id DESC ";
@@ -116,11 +118,11 @@ include '../config/constants.php'; ?>
                                     <?php echo $sn++; ?>
                                 </p>
                             </td>
-                            <td>
+                            <!-- <td>
                                 <p>
                                     <?php echo $hospitalName; ?>
                                 </p>
-                            </td>
+                            </td> -->
                             <td>
                                 <p>
                                     <?php echo $bloodGroup; ?>
@@ -136,14 +138,14 @@ include '../config/constants.php'; ?>
                                     <?php echo $expiryDate; ?>
                                 </p>
                             </td>
-                            <td>
+                            <!-- <td>
                                 <div class="d-flex justify-content-center">
-                                    <a href="<?php echo HOMEURL; ?>admin/update-order.php?id=<?php echo $id; ?>"
+                                    <a href="<?php echo HOMEURL; ?>hospital/update-blood.php?id=<?php echo $id; ?>"
                                         class="btn adminPanelBtn mr-2">
-                                        Request Blood
+                                        Update Blood
                                     </a>
                                 </div>
-                            </td>
+                            </td> -->
                         </tr>
 
                         <?php

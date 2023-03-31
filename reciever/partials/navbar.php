@@ -1,3 +1,6 @@
+<?php
+include './login-check.php'; ?>
+
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
     <a class="navbar-brand" href="index.php">Blood Bank Management System</a>

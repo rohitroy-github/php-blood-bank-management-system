@@ -97,6 +97,7 @@ include '../config/constants.php';
 
         // Login session check
         $_SESSION['user'] = $username;
+        $_SESSION['user_type'] = 'reciever';
 
         header('location:' . HOMEURL . 'reciever/');
     } else {

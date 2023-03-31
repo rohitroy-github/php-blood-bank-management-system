@@ -24,8 +24,8 @@ include '../config/constants.php';
       <div class="col-md-6 col-lg-6">
         <form class="login-form" action="" method="POST">
           <h2 class="text-center">Hospital Login</h2>
-          <br/>
-          <div class="form-group">
+
+                      <div class="form-group">
             <label for="username">Username</label>
             <input
               name="username"
@@ -66,6 +66,11 @@ include '../config/constants.php';
             echo $_SESSION['login-failure'];
             unset($_SESSION['login-failure']);
         }
+
+        if (isset($_SESSION['not-logged-in'])) {
+            echo $_SESSION['not-logged-in'];
+            unset($_SESSION['not-logged-in']);
+        }
         ?>
       </div>
     </div>
@@ -95,6 +100,7 @@ include '../config/constants.php';
 
         // Login session check
         $_SESSION['user'] = $username;
+        $_SESSION['user_type'] = 'hospital';
         $_SESSION['hospitalId'] = $id;
 
         header('location:' . HOMEURL . 'hospital/');

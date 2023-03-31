@@ -89,7 +89,6 @@ include '../config/constants.php'; ?>
         $_SESSION['registration-success'] =
             '<p>Hospital registered successfully !</p>';
 
-        // Redirect to ManageAdmin Page
         header('location:' . HOMEURL . 'hospital/');
     } else {
         // Failed
