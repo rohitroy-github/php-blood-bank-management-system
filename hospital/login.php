@@ -1,7 +1,5 @@
 <?php
-include '../config/constants.php';
-// include './partials/login-check.php';
-?>
+include '../config/constants.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,11 +55,6 @@ include '../config/constants.php';
         <br />
         <!-- loginMessages -->
         <?php
-        if (isset($_SESSION['logout'])) {
-            echo $_SESSION['logout'];
-            unset($_SESSION['logout']);
-        }
-
         if (isset($_SESSION['login-failure'])) {
             echo $_SESSION['login-failure'];
             unset($_SESSION['login-failure']);
@@ -107,7 +100,7 @@ include '../config/constants.php';
         exit();
     } else {
         $_SESSION['login-failure'] =
-            '<p class="text-center">Failed to login | Wrong credentials !</p>';
+            '<p class="text-center">Failed to login, please check your credentials !</p>';
 
         header('location:' . HOMEURL . 'hospital/login.php');
     }

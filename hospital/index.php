@@ -1,6 +1,6 @@
 <?php
 include '../config/constants.php';
-include './login-check.php';
+include './partials/login-check.php';
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +43,6 @@ include './login-check.php';
             <div>
                 <?php if (isset($_SESSION['login-success'])) {
                     echo $_SESSION['login-success'];
-                    // Ending session
                     unset($_SESSION['login-success']);
                 } ?>
             </div>

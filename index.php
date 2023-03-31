@@ -22,17 +22,19 @@ include './config/constants.php'; ?>
         <?php include './partials/navbar.php'; ?>
     </div>
 
-    <?php if (isset($_SESSION['logout-success'])) {
-        echo $_SESSION['logout-success'];
-        unset($_SESSION['logout-success']);
-    } ?>
-
     <!-- mainContentSection -->
     <div class="main-container container" id="dashboard">
         <div class="content">
             <h2 style="font-weight: 500; text-align: center;">
                 <b>Blood Bank</b>
             </h2>
+
+            <div>
+                <?php if (isset($_SESSION['logout-success'])) {
+                    echo $_SESSION['logout-success'];
+                    unset($_SESSION['logout-success']);
+                } ?>
+            </div>
 
             <div class="table-responsive">
                 <table class="table">
@@ -53,9 +55,9 @@ include './config/constants.php'; ?>
                             <th>
                                 <h6><b>Expiry</b></h6>
                             </th>
-                            <th>
+                            <!-- <th>
                                 <h6><b>Action</b></h6>
-                            </th>
+                            </th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -115,7 +117,7 @@ include './config/constants.php'; ?>
                             </td>
                             <td>
                                 <p>
-                                <?php echo $volume; ?>
+                                    <?php echo $volume; ?>
                                 </p>
                             </td>
                             <td>
@@ -123,40 +125,45 @@ include './config/constants.php'; ?>
                                     <?php echo $expiryDate; ?>
                                 </p>
                             </td>
-                            <td>
+                            <!-- <td>
                                 <div class="d-flex justify-content-center">
                                     <a href="<?php echo HOMEURL; ?>reciever/request-blood.php?id=<?php echo $id; ?>"
                                         class="btn adminPanelBtn mr-2">
                                         Request Blood
                                     </a>
                                 </div>
-                            </td>
+                            </td> -->
                         </tr>
 
                         <?php
                                 }
                             } else {
                                  ?>
-                               <p>
-                                   Currently there are no blood samples !
-                               </p>
-                       <?php
+                        <p>
+                            Currently there are no blood samples !
+                        </p>
+                        <?php
                             }
                         }
                         ?>
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </div>
-            
+                <div>
+                    <p class="text-center" style="font-size: 10px">
+                        <b>Note : Please login / register as a reciever to request blood from blood bank !</b>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
+    </div>
+    </div>
+    </div>
+
     <!-- footerSection -->
     <div class="bottom-container">
-    <?php include './partials/footer.php'; ?>
+        <?php include './partials/footer.php'; ?>
     </div>
 
     <!-- Bootstrap JS -->

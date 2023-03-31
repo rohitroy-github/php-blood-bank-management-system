@@ -22,11 +22,6 @@ include '../config/constants.php'; ?>
         <?php include './partials/navbar.php'; ?>
     </div>
 
-    <!-- <?php if (isset($_SESSION['login'])) {
-        echo $_SESSION['login'];
-        unset($_SESSION['login']);
-    } ?> -->
-
     <!-- mainContentSection -->
     <div class="main-container container" id="dashboard">
         <div class="content">
@@ -34,8 +29,15 @@ include '../config/constants.php'; ?>
                 <b>Blood Bank</b>
             </h2>
 
+            <div>
+                <?php if (isset($_SESSION['login-success'])) {
+                    echo $_SESSION['login-success'];
+                    unset($_SESSION['login-success']);
+                } ?>
+            </div>
+
             <div class="table-responsive">
-            <table class="table">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>
@@ -115,7 +117,7 @@ include '../config/constants.php'; ?>
                             </td>
                             <td>
                                 <p>
-                                <?php echo $volume; ?>
+                                    <?php echo $volume; ?>
                                 </p>
                             </td>
                             <td>
@@ -137,10 +139,10 @@ include '../config/constants.php'; ?>
                                 }
                             } else {
                                  ?>
-                               <p>
-                                   Currently there are no blood samples !
-                               </p>
-                       <?php
+                        <p>
+                            Currently there are no blood samples !
+                        </p>
+                        <?php
                             }
                         }
                         ?>
@@ -149,14 +151,14 @@ include '../config/constants.php'; ?>
             </div>
         </div>
     </div>
-            
-            </div>
-        </div>
+
+    </div>
+    </div>
     </div>
 
     <!-- footerSection -->
     <div class="bottom-container">
-    <?php include './partials/footer.php'; ?>
+        <?php include './partials/footer.php'; ?>
     </div>
 
     <!-- Bootstrap JS -->
