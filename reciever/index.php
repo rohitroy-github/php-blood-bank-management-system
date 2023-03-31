@@ -34,6 +34,11 @@ include '../config/constants.php'; ?>
                     echo $_SESSION['login-success'];
                     unset($_SESSION['login-success']);
                 } ?>
+
+                <?php if (isset($_SESSION['blood-group-mismatch'])) {
+                    echo $_SESSION['blood-group-mismatch'];
+                    unset($_SESSION['blood-group-mismatch']);
+                } ?>
             </div>
 
             <div class="table-responsive">
@@ -127,7 +132,7 @@ include '../config/constants.php'; ?>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a href="<?php echo HOMEURL; ?>reciever/request-blood.php?id=<?php echo $id; ?>"
+                                    <a href="<?php echo HOMEURL; ?>reciever/partials/blood-group-check.php?bloodGroup=<?php echo $bloodGroup; ?>&id=<?php echo $id; ?>"
                                         class="btn adminPanelBtn mr-2">
                                         Request Blood
                                     </a>
@@ -148,6 +153,11 @@ include '../config/constants.php'; ?>
                         ?>
                     </tbody>
                 </table>
+                <div>
+                    <p class="text-center" style="font-size: 10px">
+                        <b>Note : You can only request blood if your own blood group matches with it !</b>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

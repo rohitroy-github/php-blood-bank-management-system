@@ -82,6 +82,9 @@ include '../config/constants.php'; ?>
 
     $res = mysqli_query($conn, $sql);
 
+    $rows = mysqli_fetch_assoc($res);
+    $id = $rows['id'];
+
     $count = mysqli_num_rows($res);
 
     if ($count == 1) {
@@ -91,6 +94,7 @@ include '../config/constants.php'; ?>
         // Login session check
         $_SESSION['user'] = $username;
         $_SESSION['user_type'] = 'reciever';
+        $_SESSION['recieverId'] = $id;
 
         header('location:' . HOMEURL . 'reciever/');
     } else {

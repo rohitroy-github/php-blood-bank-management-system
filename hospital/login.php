@@ -74,34 +74,34 @@ include '../config/constants.php'; ?>
   </body>
 </html>
 
-<!-- <?php if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $password = md5($_POST['password']);
+ <?php if (isset($_POST['submit'])) {
+     $username = $_POST['username'];
+     $password = md5($_POST['password']);
 
-    $sql = "SELECT * FROM tbl_hospital WHERE username='$username' AND password='$password'";
+     $sql = "SELECT * FROM tbl_hospital WHERE username='$username' AND password='$password'";
 
-    $res = mysqli_query($conn, $sql);
+     $res = mysqli_query($conn, $sql);
 
-    $rows = mysqli_fetch_assoc($res);
-    $id = $rows['id'];
+     $rows = mysqli_fetch_assoc($res);
+     $id = $rows['id'];
 
-    $count = mysqli_num_rows($res);
+     $count = mysqli_num_rows($res);
 
-    if ($count == 1) {
-        $_SESSION['login-success'] =
-            '<p class="text-center">You have successfully logged in !</p>';
+     if ($count == 1) {
+         $_SESSION['login-success'] =
+             '<p class="text-center">You have successfully logged in !</p>';
 
-        // Login session check
-        $_SESSION['user'] = $username;
-        $_SESSION['user_type'] = 'hospital';
-        $_SESSION['hospitalId'] = $id;
+         // Login session check
+         $_SESSION['user'] = $username;
+         $_SESSION['user_type'] = 'hospital';
+         $_SESSION['hospitalId'] = $id;
 
-        header('location:' . HOMEURL . 'hospital/');
-        exit();
-    } else {
-        $_SESSION['login-failure'] =
-            '<p class="text-center">Failed to login, please check your credentials !</p>';
+         header('location:' . HOMEURL . 'hospital/');
+         exit();
+     } else {
+         $_SESSION['login-failure'] =
+             '<p class="text-center">Failed to login, please check your credentials !</p>';
 
-        header('location:' . HOMEURL . 'hospital/login.php');
-    }
-} ?> -->
+         header('location:' . HOMEURL . 'hospital/login.php');
+     }
+ } ?>
