@@ -1,3 +1,8 @@
+<?php
+include '../config/constants.php';
+// include './partials/login-check.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,8 +20,6 @@
     <title>Recieve | Login</title>
   </head>
   <body>
-    <!-- <?php include '../config/constants.php'; ?> -->
-
     <div class="container">
       <div class="col-md-6 col-lg-6">
         <form class="login-form" action="" method="POST">
@@ -82,14 +85,14 @@
     $username = $_POST['username'];
     $password = md5($_POST['password']);
 
-    $sql = "SELECT * FROM tbl_admin WHERE username='$username' AND password='$password'";
+    $sql = "SELECT * FROM tbl_reciever WHERE username='$username' AND password='$password'";
 
     $res = mysqli_query($conn, $sql);
 
     $count = mysqli_num_rows($res);
 
     if ($count == 1) {
-        $_SESSION['login'] =
+        $_SESSION['login-success'] =
             '<p class="text-center">You have successfully logged in !</p>';
 
         // Login session check
@@ -97,7 +100,7 @@
 
         header('location:' . HOMEURL . 'reciever/');
     } else {
-        $_SESSION['login'] =
+        $_SESSION['login-failure'] =
             '<p class="text-center">Failed to login | Wrong credentials !</p>';
 
         header('location:' . HOMEURL . 'reciever/login.php');

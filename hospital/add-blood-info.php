@@ -1,3 +1,6 @@
+<?php
+include '../config/constants.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,11 +63,12 @@
 <?php if (isset($_POST['submit'])) {
     // Store in variables
     $bloodGroup = $_POST['bloodGroup'];
+    $bloodGroup_upc = strtoupper($bloodGroup);
     $volume = $_POST['volume'];
     $expiryDate = $_POST['expiryDate'];
     // Set SQL query
-    $sql = "INSERT INTO tbl_admin SET
-  bloodGroup = '$bloodGroup',
+    $sql = "INSERT INTO tbl_bloodbank SET
+  bloodGroup = '$bloodGroup_upc',
   volume = '$volume',
   expiryDate = '$expiryDate'
   ";

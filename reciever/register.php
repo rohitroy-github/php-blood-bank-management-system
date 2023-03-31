@@ -1,3 +1,6 @@
+<?php
+include '../config/constants.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,12 +77,15 @@
     $username = $_POST['username'];
     $contact = $_POST['contact'];
     $bloodGroup = $_POST['bloodGroup'];
+    $bloodGroup_upc = strtoupper($bloodGroup);
     // Password encryption using md5
     $password = md5($_POST['password']);
     // Set SQL query
-    $sql = "INSERT INTO tbl_admin SET
+    $sql = "INSERT INTO tbl_reciever SET
   name = '$name',
   username = '$username',
+  contact = '$contact',
+  bloodGroup = '$bloodGroup_upc',
   password = '$password'
   ";
     // Execute query into database
@@ -87,12 +93,15 @@
     // Check whether data is inserted ?
     if ($res == true) {
         // Data inserted
-        $_SESSION['add'] = 'Reciever registered successfully !';
+        $_SESSION['registration-success'] =
+            '<p>Reciever registered successfully !</p>';
         // Redirect to ManageAdmin Page
         header('location:' . HOMEURL . 'reciever/');
     } else {
         // Failed
-        $_SESSION['add'] = 'Failed to register reciever !';
+        $_SESSION['registration-failure'] =
+            '<p>Reciever registered failed  !</p>';
+
         // Redirect to addAdmin Page again
         header('location:' . HOMEURL . 'reciever/register.php');
     }

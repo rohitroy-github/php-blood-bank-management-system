@@ -9,7 +9,7 @@ session_start();
 define('LOCALHOST', 'localhost');
 define('USERNAME', 'root');
 define('PASSWORD', '');
-define('DATABASE_NAME', 'php-grievance-cell');
+define('DATABASE_NAME', 'php-bbms');
 
 define(
     'HOMEURL',

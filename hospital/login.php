@@ -1,3 +1,8 @@
+<?php
+include '../config/constants.php';
+// include './partials/login-check.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,8 +20,6 @@
     <title>Hospital | Login</title>
   </head>
   <body>
-    <!-- <?php include '../config/constants.php'; ?> -->
-
     <div class="container">
       <div class="col-md-6 col-lg-6">
         <form class="login-form" action="" method="POST">
@@ -59,14 +62,9 @@
             unset($_SESSION['logout']);
         }
 
-        if (isset($_SESSION['login'])) {
-            echo $_SESSION['login'];
-            unset($_SESSION['login']);
-        }
-
-        if (isset($_SESSION['no-login-message'])) {
-            echo $_SESSION['no-login-message'];
-            unset($_SESSION['no-login-message']);
+        if (isset($_SESSION['login-failure'])) {
+            echo $_SESSION['login-failure'];
+            unset($_SESSION['login-failure']);
         }
         ?>
       </div>
@@ -82,14 +80,17 @@
     $username = $_POST['username'];
     $password = md5($_POST['password']);
 
-    $sql = "SELECT * FROM tbl_admin WHERE username='$username' AND password='$password'";
+    $sql = "SELECT * FROM tbl_hospital WHERE username='$username' AND password='$password'";
 
     $res = mysqli_query($conn, $sql);
+
+    $rows = mysqli_fetch_assoc($res);
+    $id = $rows['id'];
 
     $count = mysqli_num_rows($res);
 
     if ($count == 1) {
-        $_SESSION['login'] =
+        $_SESSION['login-success'] =
             '<p class="text-center">You have successfully logged in !</p>';
 
         // Login session check
@@ -97,7 +98,7 @@
 
         header('location:' . HOMEURL . 'hospital/');
     } else {
-        $_SESSION['login'] =
+        $_SESSION['login-failure'] =
             '<p class="text-center">Failed to login | Wrong credentials !</p>';
 
         header('location:' . HOMEURL . 'hospital/login.php');

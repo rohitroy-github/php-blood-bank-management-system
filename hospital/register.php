@@ -1,3 +1,6 @@
+<?php
+include '../config/constants.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,12 +26,13 @@
             <form class="login-form" action="" method="POST">
                 <h2 class="text-center">Hospital Registration</h2>
                 <br />
-                <!-- Printing SUCCESSS message -->
-                <?php if (isset($_SESSION['add'])) {
-                    echo $_SESSION['add'];
-                    // Ending session
-                    unset($_SESSION['add']);
-                } ?>
+
+<?php if (isset($_SESSION['registration-failure'])) {
+    echo $_SESSION['registration-failure'];
+    // Ending session
+    unset($_SESSION['registration-failure']);
+} ?>
+
                 <div class="form-group">
                     <label for="name">Hospital Name</label>
                     <input name="name" type="text" class="form-control" id="name"
@@ -71,10 +75,10 @@
     // Password encryption using md5
     $password = md5($_POST['password']);
     // Set SQL query
-    $sql = "INSERT INTO tbl_admin SET
+    $sql = "INSERT INTO tbl_hospital SET
   name = '$name',
-  username = '$username',
   contact = '$contact',
+  username = '$username',
   password = '$password'
   ";
     // Execute query into database
@@ -82,12 +86,16 @@
     // Check whether data is inserted ?
     if ($res == true) {
         // Data inserted
-        $_SESSION['add'] = 'Hospital registered successfully !';
+        $_SESSION['registration-success'] =
+            '<p>Hospital registered successfully !</p>';
+
         // Redirect to ManageAdmin Page
         header('location:' . HOMEURL . 'hospital/');
     } else {
         // Failed
-        $_SESSION['add'] = 'Failed to register hospital !';
+        $_SESSION['registration-failure'] =
+            '<p>Hospital registration failed !</p>';
+
         // Redirect to addAdmin Page again
         header('location:' . HOMEURL . 'hospital/register.php');
     }

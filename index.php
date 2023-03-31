@@ -1,4 +1,6 @@
-<!-- Main CMS/ Admin file  -->
+<?php
+include './config/constants.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +8,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- Bootstrap CSS -->
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./styles/clientStyles.css">
     <link rel="stylesheet" href="./styles/index.css">
@@ -46,7 +48,7 @@
                                 <h6><b>Blood Group</b></h6>
                             </th>
                             <th>
-                                <h6><b>Volume</b></h6>
+                                <h6><b>Volume (in Lts)</b></h6>
                             </th>
                             <th>
                                 <h6><b>Expiry</b></h6>
@@ -58,7 +60,7 @@
                     </thead>
                     <tbody>
                         <?php
-                        $sql = 'SELECT * FROM tbl_order ORDER BY id DESC';
+                        $sql = 'SELECT * FROM tbl_bloodbank ORDER BY id DESC';
 
                         $res = mysqli_query($conn, $sql);
 
@@ -73,7 +75,7 @@
 
                                     //Run as long as data is available
                                     $id = $rows['id'];
-                                    $hospitalName = $rows['hospitalName'];
+                                    $hospitalName = $rows['name'];
                                     $bloodGroup = $rows['bloodGroup'];
                                     $volume = $rows['volume'];
                                     $expiryDate = $rows['expiryDate'];
@@ -94,11 +96,11 @@
                                     <?php echo $bloodGroup; ?>
                                 </p>
                             </td>
-                            <!-- <td>
+                            <td>
                                 <p>
                                 <?php echo $volume; ?>
                                 </p>
-                            </td> -->
+                            </td>
                             <td>
                                 <p>
                                     <?php echo $expiryDate; ?>

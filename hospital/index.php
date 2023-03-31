@@ -1,4 +1,6 @@
-<!-- Main CMS/ Admin file  -->
+<?php
+include '../config/constants.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,32 +38,32 @@
             </div>
 
             <div class="table-responsive">
-                <table class="table">
+            <table class="table">
                     <thead>
                         <tr>
                             <th>
                                 <h6><b>Serial</b></h6>
                             </th>
                             <th>
+                                <h6><b>Hospital</b></h6>
+                            </th>
+                            <th>
                                 <h6><b>Blood Group</b></h6>
                             </th>
                             <th>
-                                <h6><b>Volume(in Lts)</b></h6>
+                                <h6><b>Volume (in Lts)</b></h6>
                             </th>
                             <th>
-                                <h6><b>Expiry Date</b></h6>
+                                <h6><b>Expiry</b></h6>
                             </th>
                             <th>
-                                <h6><b>Status</b></h6>
-                            </th>
-                            <th>
-                                <h6><b>Actions</b></h6>
+                                <h6><b>Action</b></h6>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $sql = 'SELECT * FROM tbl_order ORDER BY id DESC';
+                        $sql = 'SELECT * FROM tbl_bloodbank ORDER BY id DESC';
 
                         $res = mysqli_query($conn, $sql);
 
@@ -76,10 +78,10 @@
 
                                     //Run as long as data is available
                                     $id = $rows['id'];
+                                    $hospitalName = $rows['name'];
                                     $bloodGroup = $rows['bloodGroup'];
                                     $volume = $rows['volume'];
                                     $expiryDate = $rows['expiryDate'];
-                                    $status = $rows['status'];
                                     ?>
                         <tr>
                             <td>
@@ -89,12 +91,17 @@
                             </td>
                             <td>
                                 <p>
+                                    <?php echo $hospitalName; ?>
+                                </p>
+                            </td>
+                            <td>
+                                <p>
                                     <?php echo $bloodGroup; ?>
                                 </p>
                             </td>
                             <td>
                                 <p>
-                                    <?php echo $volume; ?>
+                                <?php echo $volume; ?>
                                 </p>
                             </td>
                             <td>
@@ -103,15 +110,10 @@
                                 </p>
                             </td>
                             <td>
-                                <p>
-                                    <?php echo $status; ?>
-                                </p>
-                            </td>
-                            <td>
                                 <div class="d-flex justify-content-center">
                                     <a href="<?php echo HOMEURL; ?>admin/update-order.php?id=<?php echo $id; ?>"
                                         class="btn adminPanelBtn mr-2">
-                                        Update Status
+                                        Request Blood
                                     </a>
                                 </div>
                             </td>
@@ -124,7 +126,7 @@
                         <tr>
                             <td>
                                 <p>
-                                    Currently there are no requests !
+                                    Currently there are no orders !
                                 </p>
                             </td>
                         </tr>
