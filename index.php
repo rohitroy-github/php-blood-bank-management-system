@@ -56,9 +56,9 @@ include './config/constants.php'; ?>
                             <th>
                                 <h6><b>Expiry</b></h6>
                             </th>
-                            <!-- <th>
+                            <th>
                                 <h6><b>Action</b></h6>
-                            </th> -->
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -126,14 +126,14 @@ include './config/constants.php'; ?>
                                     <?php echo $expiryDate; ?>
                                 </p>
                             </td>
-                            <!-- <td>
+                            <td>
                                 <div class="d-flex justify-content-center">
                                     <a href="<?php echo HOMEURL; ?>reciever/request-blood.php?id=<?php echo $id; ?>"
                                         class="btn adminPanelBtn mr-2">
-                                        Request Blood
+                                        Request Blood Sample
                                     </a>
                                 </div>
-                            </td> -->
+                            </td>
                         </tr>
 
                         <?php
