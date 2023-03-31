@@ -8,14 +8,9 @@ include '../config/constants.php'; ?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../styles/admin.css"
-    />    
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../styles/admin.css" />
 
     <title>Hospital | Registration</title>
 </head>
@@ -27,11 +22,11 @@ include '../config/constants.php'; ?>
                 <h2 class="text-center">Hospital Registration</h2>
                 <br />
 
-<?php if (isset($_SESSION['registration-failure'])) {
-    echo $_SESSION['registration-failure'];
-    // Ending session
-    unset($_SESSION['registration-failure']);
-} ?>
+                <?php if (isset($_SESSION['registration-failure'])) {
+                    echo $_SESSION['registration-failure'];
+                    // Ending session
+                    unset($_SESSION['registration-failure']);
+                } ?>
 
                 <div class="form-group">
                     <label for="name">Hospital Name</label>
@@ -67,7 +62,7 @@ include '../config/constants.php'; ?>
 
 </html>
 
-<!-- <?php if (isset($_POST['submit'])) {
+<?php if (isset($_POST['submit'])) {
     // Store in variables
     $name = $_POST['name'];
     $username = $_POST['username'];
@@ -98,5 +93,4 @@ include '../config/constants.php'; ?>
         // Redirect to addAdmin Page again
         header('location:' . HOMEURL . 'hospital/register.php');
     }
-    // echo $sql;
-} ?> -->
+} ?>

@@ -82,15 +82,16 @@ include '../config/constants.php'; ?>
     // Check whether data is inserted ?
     if ($res == true) {
         // Data inserted
-        $_SESSION['add'] = 'Blood added successfully !';
-        // Redirect to ManageAdmin Page
+        $_SESSION['addition-success'] =
+            '<p class="text-center">Blood sample added successfully !</p>';
+        // redirectingToDashboard
         header('location:' . HOMEURL . 'hospital/');
     } else {
         // Failed
-        $_SESSION['add'] = 'Failed to add blood !';
-        // Redirect to addAdmin Page again
+        $_SESSION['addition-failure'] =
+            '<p class="text-center">Failed to add blood sample !</p>';
+        // redirectingToRetry
         header('location:' . HOMEURL . 'hospital/add-blood-info.php');
     }
-    // echo $sql;
 }
 ?>

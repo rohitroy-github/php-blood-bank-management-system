@@ -74,7 +74,7 @@ include '../config/constants.php'; ?>
   </body>
 </html>
 
-<!-- <?php if (isset($_POST['submit'])) {
+<?php if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
 
@@ -91,16 +91,18 @@ include '../config/constants.php'; ?>
         $_SESSION['login-success'] =
             '<p class="text-center">You have successfully logged in !</p>';
 
-        // Login session check
+        // sessions
         $_SESSION['user'] = $username;
         $_SESSION['user_type'] = 'reciever';
         $_SESSION['recieverId'] = $id;
 
+        // redirectingToLogin
         header('location:' . HOMEURL . 'reciever/');
     } else {
         $_SESSION['login-failure'] =
-            '<p class="text-center">Failed to login, please check your credentials !</p>';
+            '<p class="text-center">Failed to login. Please check your credentials !</p>';
 
+        // redirectingToRetry
         header('location:' . HOMEURL . 'reciever/login.php');
     }
-} ?> -->
+} ?> 

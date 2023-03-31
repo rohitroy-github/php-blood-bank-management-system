@@ -71,7 +71,7 @@ include '../config/constants.php'; ?>
 
 </html>
 
-<!-- <?php if (isset($_POST['submit'])) {
+<?php if (isset($_POST['submit'])) {
     // Store in variables
     $name = $_POST['name'];
     $username = $_POST['username'];
@@ -94,16 +94,20 @@ include '../config/constants.php'; ?>
     if ($res == true) {
         // Data inserted
         $_SESSION['registration-success'] =
-            '<p>Reciever registered successfully !</p>';
-        // Redirect to ManageAdmin Page
+            '<p class="text-center">Reciever registered successfully !</p>';
+
+        // sessions
+        $_SESSION['user'] = $username;
+        $_SESSION['user_type'] = 'reciever';
+        $_SESSION['recieverId'] = $id;
+
+        // redirectingToLogin
         header('location:' . HOMEURL . 'reciever/');
     } else {
         // Failed
         $_SESSION['registration-failure'] =
-            '<p>Reciever registered failed  !</p>';
-
-        // Redirect to addAdmin Page again
+            '<p class="text-center">Failed to register. Please try again later  !</p>';
+        // redirectingToRetry
         header('location:' . HOMEURL . 'reciever/register.php');
     }
-    // echo $sql;
-} ?> -->
+} ?>

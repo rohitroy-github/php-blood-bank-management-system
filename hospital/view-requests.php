@@ -184,7 +184,7 @@ $hospitalId = $_SESSION['hospitalId'];
                             } else {
                                  ?>
                                 <p>
-                                    Currently there are no blood sample requested !
+                                    Currently there are no blood samples requested !
                                 </p>
                         <?php
                             }
