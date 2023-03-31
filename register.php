@@ -38,13 +38,13 @@
         >
           <div class="d-flex justify-content-center" style="padding: 1%">
             <a href="./hospital/register.php" class="btn adminPanelBtn"
-              >Hospital Registration</a
+              >Register As Hospital</a
             >
           </div>
 
           <div class="d-flex justify-content-center" style="padding: 1%">
             <a href="./reciever/register.php" class="btn adminPanelBtn"
-              >Reciever Registration</a
+              >Register As Reciever</a
             >
           </div>
         </div>

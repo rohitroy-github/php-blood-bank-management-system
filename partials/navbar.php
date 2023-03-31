@@ -8,13 +8,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="link nav-link" href="index.php">Dashboard</a>
+                    <a class="link nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="link nav-link" href="register.php">Register</a>
+                    <a class="link nav-link" href="register.php">Registration Panel</a>
                 </li>
                 <li class="nav-item">
-                    <a class="link nav-link" href="login.php">Login</a>
+                    <a class="link nav-link" href="login.php">Login Panel</a>
                 </li>
             </ul>
         </div>

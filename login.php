@@ -40,11 +40,11 @@
 
             <div style="display: flex; flex-direction: row; justify-content: center">
                 <div class="d-flex justify-content-center" style="padding: 1%">
-                    <a href="./hospital/login.php" class="btn adminPanelBtn">Hospital Login</a>
+                    <a href="./hospital/login.php" class="btn adminPanelBtn">Login As Hospital</a>
                 </div>
 
                 <div class="d-flex justify-content-center" style="padding: 1%">
-                    <a href="./reciever/login.php" class="btn adminPanelBtn">Reciever Login</a>
+                    <a href="./reciever/login.php" class="btn adminPanelBtn">Login As Reciever</a>
                 </div>
             </div>
         </div>

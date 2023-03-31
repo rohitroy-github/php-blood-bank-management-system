@@ -11,7 +11,7 @@
                     <a class="link nav-link" href="index.php">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="link nav-link" href="add-blood-info.php">Add Blood Information</a>
+                    <a class="link nav-link" href="add-blood-info.php">Add Blood Sample</a>
                 </li>
                 <li class="nav-item">
                     <a class="link nav-link" href="view-requests.php">View Requests</a>

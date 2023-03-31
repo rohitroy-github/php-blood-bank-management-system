@@ -30,6 +30,7 @@ include './config/constants.php'; ?>
             </h2>
 
             <div>
+                <p class="text-center">All available blood samples are listed here !</p>
                 <?php if (isset($_SESSION['logout-success'])) {
                     echo $_SESSION['logout-success'];
                     unset($_SESSION['logout-success']);
